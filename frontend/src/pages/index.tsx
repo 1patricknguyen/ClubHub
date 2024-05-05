@@ -1,13 +1,34 @@
 import React, { useState } from 'react';
+import { useRouter } from 'next/router';
 
 export default function Home() {
+  const router = useRouter();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();  // Prevent default form submission
     console.log('Username:', username, 'Password:', password);
-    // Add your login logic or further processing here
+    try {
+      const response = await fetch('http://localhost:4000/login/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password })
+      });
+      if (!response.ok) {
+        throw new Error('Failed to login');
+      }
+
+      const { access_token } = await response.json();
+      localStorage.setItem('token', access_token);
+      console.log('Login successful and token stored!');
+      router.push('/dashboard');
+    
+  } catch (error) {
+        console.error('Login error:', error);
+    }
   };
 
 

@@ -3,13 +3,15 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 from flask_bcrypt import Bcrypt
 from os import environ
+from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 
 
 app = Flask(__name__)
 CORS(app)
 bcrypt = Bcrypt(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('DATABASE_URL')
-app.config['SECRET_KEY'] = 'pideltapsiinc'
+app.config['JWT_SECRET_KEY'] = 'pideltapsiinc'
+jwt = JWTManager(app)
 db = SQLAlchemy(app)
 
 
@@ -18,6 +20,7 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True, unique=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
     password = db.Column(db.String(120), unique=True, nullable=False)
+    role = db.Column(db.String(80), nullable=False)
 
     def json(self):
         return {'id': self.id,'username': self.username, 'password': self.password}
@@ -29,18 +32,18 @@ def create_users():
 
 def initialize_users():
     users = [
-        {"username": "patricknguyen", "password": "pn"},
-        {"username": "christiannguyen", "password": "cn"},
-        {"username": "justinoh", "password": "jo"},
-        {"username": "johndinh", "password": "jd"},
-        {"username": "anhle", "password": "al"}
+        {"username": "patricknguyen", "password": "pn", "role": "president"},
+        {"username": "christiannguyen", "password": "cn", "role": "member"},
+        {"username": "justinoh", "password": "jo", "role": "member"},
+        {"username": "johndinh", "password": "jd", "role": "member"},
+        {"username": "anhle", "password": "al", "role": "member"}
     ]
 
     for user_data in users:
         existing_user = User.query.filter_by(username=user_data["username"]).first()
         if not existing_user:
             hashed_password = bcrypt.generate_password_hash(user_data["password"]).decode('utf-8')
-            new_user = User(username=user_data["username"], password=hashed_password)
+            new_user = User(username=user_data["username"], password=hashed_password, role=user_data["role"])
             db.session.add(new_user)
     db.session.commit()
 
@@ -63,10 +66,25 @@ def login_user():
 
     if user and bcrypt.check_password_hash(user.password, password):
         # The password matches
-        return jsonify({'message': 'Login successful'}), 200
+        additional_claims = {"role": user.role}
+        access_token = create_access_token(identity=username, additional_claims=additional_claims)
+        return jsonify(access_token=access_token), 200
     else:
         # Username not found or password does not match
         return jsonify({'error': 'Invalid username or password'}), 401
+    
+
+
+@app.route('/protected', methods=['GET'])
+@jwt_required()
+def protected():
+    # Access the identity of the current user with get_jwt_identity
+    current_user = get_jwt_identity()
+    user = User.query.filter_by(username=current_user).first()
+    if user:
+        return jsonify(logged_in_as=current_user, role=user.role), 200
+    else:
+        return jsonify({"message": "User not found"}), 404
 
 
 @app.route('/api/flask/users/', methods=['POST'])
