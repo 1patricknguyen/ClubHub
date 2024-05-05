@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { useRouter } from 'next/router';
 
 export default function Home() {
+  const router = useRouter();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -22,6 +24,7 @@ export default function Home() {
       const { access_token } = await response.json();
       localStorage.setItem('token', access_token);
       console.log('Login successful and token stored!');
+      router.push('/dashboard');
     
   } catch (error) {
         console.error('Login error:', error);

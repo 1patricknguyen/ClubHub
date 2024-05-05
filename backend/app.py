@@ -32,7 +32,7 @@ def create_users():
 
 def initialize_users():
     users = [
-        {"username": "patricknguyen", "password": "pn", "role": "member"},
+        {"username": "patricknguyen", "password": "pn", "role": "president"},
         {"username": "christiannguyen", "password": "cn", "role": "member"},
         {"username": "justinoh", "password": "jo", "role": "member"},
         {"username": "johndinh", "password": "jd", "role": "member"},
