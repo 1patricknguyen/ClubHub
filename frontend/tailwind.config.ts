@@ -13,8 +13,15 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      spacing: {
+        '200': '200px',
+        '50': '50px',
+        '20': '20px',
+        '100': '100px',
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],
 };
+
 export default config;

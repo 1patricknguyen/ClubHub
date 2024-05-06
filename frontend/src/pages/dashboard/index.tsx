@@ -1,12 +1,13 @@
 import React from "react";
-import Logo from "@/components/Logo";
 import LogoutButton from "@/components/LogoutButton";
 import withAuth from "@/auth/withAuth";
+import Sidebar from "@/components/Sidebar";
+
 
 function App() {
     return (
-      <div>
-        <Logo src="/pdpsilogo.png" />
+      <div className="bg-zinc-950 min-h-screen text-stone-200">
+        <Sidebar />
         <LogoutButton />
       </div>
     );
