@@ -108,7 +108,7 @@ def create_user():
 def get_users():
    try:
        users = User.query.all()
-       users_data = [{'id': user.id, 'username': user.username, 'password': user.password} for user in users]
+       users_data = [{'id': user.id, 'username': user.username, 'password': user.password, 'role': user.role} for user in users]
        return jsonify(users_data), 200
    except Exception as e:
        return make_response(jsonify({'message': 'error getting users', 'error': str(e)}), 500)
@@ -129,8 +129,9 @@ def update_user(id):
         user = User.query.filter_by(id=id).first()
         if user:
             data = request.get_json()
-            user.username = data['username']
-            user.password = data['password']
+            # user.username = data['username']
+            # user.password = data['password']
+            user.role = data['role']
             db.session.commit()
             return make_response(jsonify({'message': 'user updated'}, 200))
         return make_response(jsonify({'message': 'user not found'}), 404)

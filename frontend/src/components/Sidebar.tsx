@@ -1,8 +1,43 @@
 import Link from "next/link"
-import { useEffect, useState } from 'react';
+import { use, useEffect, useState } from 'react';
+import { jwtDecode } from 'jwt-decode';
 
 export default function Sidebar() {
     
+
+interface MyJwtPayload {
+  sub: string; 
+  role: string;
+  
+}
+
+const [token, setToken] = useState<string | null>(null); // getting the 'hashed' token
+const [decodedToken, setDecodedToken] = useState<MyJwtPayload | null>(null); // getting the whole decoded token
+const [role, setRole] = useState<string | null>(null); // getting role
+const [name, setName] = useState<string | null>(null); // getting name
+
+useEffect(() => {
+  const tokenFromStorage = localStorage.getItem('token');
+  console.log('Token from storage:', tokenFromStorage);
+  if (tokenFromStorage) {
+    try {
+      const decoded = jwtDecode<MyJwtPayload>(tokenFromStorage); 
+      console.log('Decoded Token:', decoded);
+      setDecodedToken(decoded);
+      setToken(tokenFromStorage);
+      setRole(decoded.role);
+      setName(decoded.sub);
+    } catch (error) {
+      console.error('Error decoding token:', error);
+    }
+  }
+}, []);
+
+console.log('role:', role);
+console.log('name:', name);
+
+
+
   return (
     <div className="fixed left-0 top-0 h-full w-64 bg-gray-900 text-white">
       <div className="flex h-16 items-center justify-center border-b border-gray-800">
@@ -21,11 +56,7 @@ export default function Sidebar() {
           <h3 className="px-2 text-xs font-medium uppercase tracking-wider text-gray-400">Tools</h3>
           <Link className="flex items-center gap-2 rounded-md px-2 py-2 text-sm font-medium hover:bg-gray-800" href="#">
             <UsersIcon className="h-5 w-5" />
-            Team
-          </Link>
-          <Link className="flex items-center gap-2 rounded-md px-2 py-2 text-sm font-medium hover:bg-gray-800" href="#">
-            <FileIcon className="h-5 w-5" />
-            Files
+            Members
           </Link>
           <Link className="flex items-center gap-2 rounded-md px-2 py-2 text-sm font-medium hover:bg-gray-800" href="#">
             <CalendarIcon className="h-5 w-5" />
@@ -35,19 +66,15 @@ export default function Sidebar() {
         <div className="space-y-1">
           <h3 className="px-2 text-xs font-medium uppercase tracking-wider text-gray-400">Settings</h3>
           <Link className="flex items-center gap-2 rounded-md px-2 py-2 text-sm font-medium hover:bg-gray-800" href="#">
-            <SettingsIcon className="h-5 w-5" />
-            Settings
-          </Link>
-          <Link className="flex items-center gap-2 rounded-md px-2 py-2 text-sm font-medium hover:bg-gray-800" href="#">
             <ImportIcon className="h-5 w-5" />
             Integrations
           </Link>
-          {/* {role === 'president' &&
+          {role === 'president' &&
             (<Link className="flex items-center gap-2 rounded-md px-2 py-2 text-sm font-medium hover:bg-gray-800" href="#">
             <CreditCardIcon className="h-5 w-5" />
             Billing
           </Link>)
-          } */}
+          }
           
         </div>
       </nav>

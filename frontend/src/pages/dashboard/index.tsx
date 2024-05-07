@@ -1,3 +1,4 @@
+'use client';
 import React from "react";
 import LogoutButton from "@/components/LogoutButton";
 import withAuth from "@/auth/withAuth";

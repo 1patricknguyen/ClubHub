@@ -16,6 +16,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/auth/withAuth.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/auth/withAuth.jsx", "src/components/Sidebar.jsx"],
   "exclude": ["node_modules"]
 }
