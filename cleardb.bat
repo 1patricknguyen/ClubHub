@@ -1,0 +1,1 @@
+docker volume rm pdphub_pgdata
