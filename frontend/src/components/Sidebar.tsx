@@ -39,7 +39,7 @@ console.log('name:', name);
 
 
   return (
-    <div className="fixed left-0 top-0 h-full w-64 bg-gray-900 text-white">
+    <div className="fixed left-0 top-0 h-full w-56 bg-gray-900 text-white border-r border-gray-800">
       <div className="flex h-16 items-center justify-center border-b border-gray-800">
         <img src="/pdpsilogo.png" alt="PDPsi Logo" className="h-8" />
       </div>

@@ -8,10 +8,10 @@ import Welcome from "@/components/Welcome";
 
 function App() {
     return (
-      <div className="bg-zinc-950 min-h-screen text-stone-200">
+      <div className="bg-gray-900 min-h-screen text-stone-200 flex">
         <Sidebar />
-        <LogoutButton />
         <Welcome />
+        <LogoutButton />
       </div>
     );
   }

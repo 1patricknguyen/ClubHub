@@ -22,9 +22,12 @@ export default function Welcome() {
         }
       }, []);
       return (
-        <div className="bg-zinc-950 min-h-screen text-stone-200 flex items-center justify-center">
-            <h1>Welcome {name}!</h1>
+        <div style={{ marginLeft: '244px', marginTop: '20px' }} className="bg-gray-900 min-h-screen text-white flex-grow items-center justify-center">
+          <div style={{ height: '100px' }} className="p-10 bg-gray-800 rounded shadow-xl w-1/3 flex flex-col justify-center">
+            <h1 className="text-2xl font-bold mb-4 text-white">Welcome back, {name}!</h1>
+            <p className="text-gray-300">We're glad to see you again!</p>
+          </div>
         </div>
-    );
+      );
 
 }
