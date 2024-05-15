@@ -102,7 +102,7 @@ def login_user():
 
     if user and bcrypt.check_password_hash(user.password, password):
         # The password matches
-        additional_claims = {"role": user.role}
+        additional_claims = {"role": user.role, "id": user.id}
         access_token = create_access_token(identity=username, additional_claims=additional_claims)
         return jsonify(access_token=access_token), 200
     else:
