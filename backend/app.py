@@ -21,6 +21,7 @@ class User(db.Model):
     username = db.Column(db.String(80), unique=True, nullable=False)
     password = db.Column(db.String(120), unique=True, nullable=False)
     role = db.Column(db.String(80), nullable=False)
+    dues = db.Column(db.String(80))
 
     def json(self):
         return {'id': self.id,'username': self.username, 'password': self.password}
@@ -32,46 +33,46 @@ def create_users():
 
 def initialize_users():
     users = [
-        {"username": "patricknguyen", "password": "pn", "role": "developer"},
-        {"username": "christiannguyen", "password": "cn", "role": "member"},
-        {"username": "justinoh", "password": "jo", "role": "member"},
-        {"username": "johndinh", "password": "jd", "role": "member"},
-        {"username": "anhle", "password": "al", "role": "member"},
-        {"username": "jeffreylopez", "password": "jl", "role": "member"},
-        {"username": "ansonwu", "password": "aw", "role": "member"},
-        {"username": "joeyspagnoli", "password": "js", "role": "member"},
-        {"username": "jasondinh", "password": "jd", "role": "member"},
-        {"username": "koriverges", "password": "kv", "role": "member"},
-        {"username": "andrewhuang", "password": "ah", "role": "member"},
-        {"username": "jameschen", "password": "jc", "role": "member"},
-        {"username": "patrickiteghie", "password": "pi", "role": "member"},
-        {"username": "ivanzhang", "password": "iz", "role": "member"},
-        {"username": "anandhakresnadi", "password": "ak", "role": "member"},
-        {"username": "winsonzhang", "password": "wz", "role": "member"},
-        {"username": "dylanchuang", "password": "dc", "role": "member"},
-        {"username": "danielcho", "password": "dc", "role": "member"},
-        {"username": "arangain", "password": "ag", "role": "member"},
-        {"username": "mikeygatmaitan", "password": "mg", "role": "member"},
-        {"username": "henrybui", "password": "hb", "role": "member"},
-        {"username": "baole", "password": "bl", "role": "member"},
-        {"username": "dustinnguyen", "password": "dn", "role": "member"},
-        {"username": "alanchau", "password": "ac", "role": "member"},
-        {"username": "ryanmatulin", "password": "rm", "role": "member"},
-        {"username": "keithbanate", "password": "kb", "role": "member"},
-        {"username": "jacobpena", "password": "jp", "role": "member"},
-        {"username": "ericoh", "password": "eo", "role": "member"},
-        {"username": "raymondchau", "password": "rc", "role": "member"},
-        {"username": "bryanngo", "password": "bn", "role": "member"},
-        {"username": "vietho", "password": "vh", "role": "member"},
-        {"username": "timothyshin", "password": "ts", "role": "member"},
-        {"username": "vikramkarkare", "password": "vk", "role": "member"},
-        {"username": "lanceopina", "password": "lo", "role": "member"},
-        {"username": "jacobpatag", "password": "jp", "role": "member"},
-        {"username": "earthcapungan", "password": "ec", "role": "member"},
-        {"username": "leonmungin", "password": "lm", "role": "member"},
-        {"username": "kobevu", "password": "kv", "role": "member"},
-        {"username": "peterlok", "password": "pl", "role": "member"},
-        {"username": "aaronjoshy", "password": "aj", "role": "member"},
+        {"username": "patricknguyen", "password": "pn", "role": "developer", "dues": "0"},
+        {"username": "christiannguyen", "password": "cn", "role": "member", "dues": "0"},
+        {"username": "justinoh", "password": "jo", "role": "member", "dues": "0"},
+        {"username": "johndinh", "password": "jd", "role": "member", "dues": "0"},
+        {"username": "anhle", "password": "al", "role": "member", "dues": "0"},
+        {"username": "jeffreylopez", "password": "jl", "role": "member", "dues": "0"},
+        {"username": "ansonwu", "password": "aw", "role": "member", "dues": "0"},
+        {"username": "joeyspagnoli", "password": "js", "role": "member", "dues": "0"},
+        {"username": "jasondinh", "password": "jd", "role": "member", "dues": "0"},
+        {"username": "koriverges", "password": "kv", "role": "member", "dues": "0"},
+        {"username": "andrewhuang", "password": "ah", "role": "member", "dues": "0"},
+        {"username": "jameschen", "password": "jc", "role": "member", "dues": "0"},
+        {"username": "patrickiteghie", "password": "pi", "role": "member", "dues": "0"},
+        {"username": "ivanzhang", "password": "iz", "role": "member", "dues": "0"},
+        {"username": "anandhakresnadi", "password": "ak", "role": "member", "dues": "0"},
+        {"username": "winsonzhang", "password": "wz", "role": "member", "dues": "0"},
+        {"username": "dylanchuang", "password": "dc", "role": "member", "dues": "0"},
+        {"username": "danielcho", "password": "dc", "role": "member", "dues": "0"},
+        {"username": "arangain", "password": "ag", "role": "member", "dues": "0"},
+        {"username": "mikeygatmaitan", "password": "mg", "role": "member", "dues": "0"},
+        {"username": "henrybui", "password": "hb", "role": "member", "dues": "0"},
+        {"username": "baole", "password": "bl", "role": "member", "dues": "0"},
+        {"username": "dustinnguyen", "password": "dn", "role": "member", "dues": "0"},
+        {"username": "alanchau", "password": "ac", "role": "member", "dues": "0"},
+        {"username": "ryanmatulin", "password": "rm", "role": "member", "dues": "0"},
+        {"username": "keithbanate", "password": "kb", "role": "member", "dues": "0"},
+        {"username": "jacobpena", "password": "jp", "role": "member", "dues": "0"},
+        {"username": "ericoh", "password": "eo", "role": "member", "dues": "0"},
+        {"username": "raymondchau", "password": "rc", "role": "member", "dues": "0"},
+        {"username": "bryanngo", "password": "bn", "role": "member", "dues": "0"},
+        {"username": "vietho", "password": "vh", "role": "member", "dues": "0"},
+        {"username": "timothyshin", "password": "ts", "role": "member", "dues": "0"},
+        {"username": "vikramkarkare", "password": "vk", "role": "member", "dues": "0"},
+        {"username": "lanceopina", "password": "lo", "role": "member", "dues": "0"},
+        {"username": "jacobpatag", "password": "jp", "role": "member", "dues": "0"},
+        {"username": "earthcapungan", "password": "ec", "role": "member", "dues": "0"},
+        {"username": "leonmungin", "password": "lm", "role": "member", "dues": "0"},
+        {"username": "kobevu", "password": "kv", "role": "member", "dues": "0"},
+        {"username": "peterlok", "password": "pl", "role": "member", "dues": "0"},
+        {"username": "aaronjoshy", "password": "aj", "role": "member", "dues": "0"},
     ]
 
     for user_data in users:
@@ -143,7 +144,7 @@ def create_user():
 def get_users():
    try:
        users = User.query.all()
-       users_data = [{'id': user.id, 'username': user.username, 'password': user.password, 'role': user.role} for user in users]
+       users_data = [{'id': user.id, 'username': user.username, 'password': user.password, 'role': user.role, 'dues': user.dues} for user in users]
        return jsonify(users_data), 200
    except Exception as e:
        return make_response(jsonify({'message': 'error getting users', 'error': str(e)}), 500)
@@ -184,3 +185,17 @@ def delete_user(id):
         return make_response(jsonify({'message': 'user not found'}), 404)
     except Exception as e:
         return make_response(jsonify({'message': 'error deleting user', 'error': str(e)}), 500)
+    
+
+@app.route('/api/flask/users/dues/<id>/', methods=['PUT'])
+def update_dues(id):
+    try:
+        user = User.query.filter_by(id=id).first()
+        if user:
+            data = request.get_json()
+            user.dues = data['dues']
+            db.session.commit()
+            return make_response(jsonify({'message': 'dues updated'}, 200))
+        return make_response(jsonify({'message': 'user not found'}), 404)
+    except Exception as e:
+        return make_response(jsonify({'message': 'error updating dues', 'error': str(e)}), 500)
