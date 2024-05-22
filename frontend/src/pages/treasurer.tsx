@@ -10,7 +10,7 @@ function App() {
     dues: 0,
   };
     return (
-      <div className="">
+      <div className="flex h-screen">
       <Sidebar/>
       <DuesProfilesContainer/>
     </div>

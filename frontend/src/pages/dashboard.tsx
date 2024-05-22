@@ -11,7 +11,7 @@ function App() {
     return (
       <div className="bg-gray-900 min-h-screen text-stone-200 flex">
         <Sidebar />
-        {/* <Welcome /> */}
+        <Welcome />
         <DuesDashboard />
         <LogoutButton />
       </div>

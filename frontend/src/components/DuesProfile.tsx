@@ -42,7 +42,7 @@ const UserProfile = ({ user }: any) => {
 
     return (
         <div className="bg-gray-800 shadow-lg rounded-lg p-4 w-200 text-white">
-            <h2 className="text-lg font-bold mb-4">{user.username}</h2>
+            <h2 className="text-lg font-bold mb-4">{user.display_name}</h2>
             <p className="mb-2">Role: {user.role}</p>
             <p className="mb-2">Dues: ${dues}</p>
             {isEditing ? (

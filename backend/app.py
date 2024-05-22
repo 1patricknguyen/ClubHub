@@ -21,7 +21,8 @@ class User(db.Model):
     username = db.Column(db.String(80), unique=True, nullable=False)
     password = db.Column(db.String(120), unique=True, nullable=False)
     role = db.Column(db.String(80), nullable=False)
-    dues = db.Column(db.String(80))
+    dues = db.Column(db.String(80), nullable=False)
+    display_name = db.Column(db.String(80), unique=True, nullable=False)
 
     def json(self):
         return {'id': self.id,'username': self.username, 'password': self.password}
@@ -33,53 +34,53 @@ def create_users():
 
 def initialize_users():
     users = [
-        {"username": "patricknguyen", "password": "pn", "role": "developer", "dues": "0"},
-        {"username": "christiannguyen", "password": "cn", "role": "member", "dues": "0"},
-        {"username": "justinoh", "password": "jo", "role": "member", "dues": "0"},
-        {"username": "johndinh", "password": "jd", "role": "member", "dues": "0"},
-        {"username": "anhle", "password": "al", "role": "member", "dues": "0"},
-        {"username": "jeffreylopez", "password": "jl", "role": "member", "dues": "0"},
-        {"username": "ansonwu", "password": "aw", "role": "member", "dues": "0"},
-        {"username": "joeyspagnoli", "password": "js", "role": "member", "dues": "0"},
-        {"username": "jasondinh", "password": "jd", "role": "member", "dues": "0"},
-        {"username": "koriverges", "password": "kv", "role": "member", "dues": "0"},
-        {"username": "andrewhuang", "password": "ah", "role": "member", "dues": "0"},
-        {"username": "jameschen", "password": "jc", "role": "member", "dues": "0"},
-        {"username": "patrickiteghie", "password": "pi", "role": "member", "dues": "0"},
-        {"username": "ivanzhang", "password": "iz", "role": "member", "dues": "0"},
-        {"username": "anandhakresnadi", "password": "ak", "role": "member", "dues": "0"},
-        {"username": "winsonzhang", "password": "wz", "role": "member", "dues": "0"},
-        {"username": "dylanchuang", "password": "dc", "role": "member", "dues": "0"},
-        {"username": "danielcho", "password": "dc", "role": "member", "dues": "0"},
-        {"username": "arangain", "password": "ag", "role": "member", "dues": "0"},
-        {"username": "mikeygatmaitan", "password": "mg", "role": "member", "dues": "0"},
-        {"username": "henrybui", "password": "hb", "role": "member", "dues": "0"},
-        {"username": "baole", "password": "bl", "role": "member", "dues": "0"},
-        {"username": "dustinnguyen", "password": "dn", "role": "member", "dues": "0"},
-        {"username": "alanchau", "password": "ac", "role": "member", "dues": "0"},
-        {"username": "ryanmatulin", "password": "rm", "role": "member", "dues": "0"},
-        {"username": "keithbanate", "password": "kb", "role": "member", "dues": "0"},
-        {"username": "jacobpena", "password": "jp", "role": "member", "dues": "0"},
-        {"username": "ericoh", "password": "eo", "role": "member", "dues": "0"},
-        {"username": "raymondchau", "password": "rc", "role": "member", "dues": "0"},
-        {"username": "bryanngo", "password": "bn", "role": "member", "dues": "0"},
-        {"username": "vietho", "password": "vh", "role": "member", "dues": "0"},
-        {"username": "timothyshin", "password": "ts", "role": "member", "dues": "0"},
-        {"username": "vikramkarkare", "password": "vk", "role": "member", "dues": "0"},
-        {"username": "lanceopina", "password": "lo", "role": "member", "dues": "0"},
-        {"username": "jacobpatag", "password": "jp", "role": "member", "dues": "0"},
-        {"username": "earthcapungan", "password": "ec", "role": "member", "dues": "0"},
-        {"username": "leonmungin", "password": "lm", "role": "member", "dues": "0"},
-        {"username": "kobevu", "password": "kv", "role": "member", "dues": "0"},
-        {"username": "peterlok", "password": "pl", "role": "member", "dues": "0"},
-        {"username": "aaronjoshy", "password": "aj", "role": "member", "dues": "0"},
+        {"username": "patricknguyen", "password": "pn", "role": "developer", "dues": "0", "display_name": "Patrick Nguyen"},
+        {"username": "christiannguyen", "password": "cn", "role": "member", "dues": "0", "display_name": "Christian Nguyen"},
+        {"username": "justinoh", "password": "jo", "role": "member", "dues": "0", "display_name": "Justin Oh"},
+        {"username": "johndinh", "password": "jd", "role": "member", "dues": "0", "display_name": "John Dinh"},
+        {"username": "anhle", "password": "al", "role": "member", "dues": "0", "display_name": "Anh Le"},
+        {"username": "jeffreylopez", "password": "jl", "role": "member", "dues": "0", "display_name": "Jeffrey Lopez"},
+        {"username": "ansonwu", "password": "aw", "role": "member", "dues": "0", "display_name": "Anson Wu"},
+        {"username": "joeyspagnoli", "password": "js", "role": "member", "dues": "0", "display_name": "Joey Spagnoli"},
+        {"username": "jasondinh", "password": "jd", "role": "member", "dues": "0", "display_name": "Jason Dinh"},
+        {"username": "koriverges", "password": "kv", "role": "member", "dues": "0", "display_name": "Kori Verges"},
+        {"username": "andrewhuang", "password": "ah", "role": "member", "dues": "0", "display_name": "Andrew Huang"},
+        {"username": "jameschen", "password": "jc", "role": "member", "dues": "0", "display_name": "James Chen"},
+        {"username": "patrickiteghie", "password": "pi", "role": "member", "dues": "0", "display_name": "Patrick Iteghie"},
+        {"username": "ivanzhang", "password": "iz", "role": "member", "dues": "0", "display_name": "Ivan Zhang"},
+        {"username": "anandhakresnadi", "password": "ak", "role": "member", "dues": "0", "display_name": "Anandha Kresnadi"},
+        {"username": "winsonzhang", "password": "wz", "role": "member", "dues": "0", "display_name": "Winson Zhang"},
+        {"username": "dylanchuang", "password": "dc", "role": "member", "dues": "0", "display_name": "Dylan Chuang"},
+        {"username": "danielcho", "password": "dc", "role": "member", "dues": "0", "display_name": "Daniel Cho"},
+        {"username": "arangain", "password": "ag", "role": "member", "dues": "0", "display_name": "Aran gain"},
+        {"username": "mikeygatmaitan", "password": "mg", "role": "member", "dues": "0", "display_name": "Mikey Gatmaitan"},
+        {"username": "henrybui", "password": "hb", "role": "member", "dues": "0", "display_name": "Henry Bui"},
+        {"username": "baole", "password": "bl", "role": "member", "dues": "0", "display_name": "Bao Le"},
+        {"username": "dustinnguyen", "password": "dn", "role": "member", "dues": "0", "display_name": "Dustin Nguyen"},
+        {"username": "alanchau", "password": "ac", "role": "member", "dues": "0", "display_name": "Alan Chau"},
+        {"username": "ryanmatulin", "password": "rm", "role": "member", "dues": "0", "display_name": "Ryan Matulin"},
+        {"username": "keithbanate", "password": "kb", "role": "member", "dues": "0", "display_name": "Keith Banate"},
+        {"username": "jacobpena", "password": "jp", "role": "member", "dues": "0", "display_name": "Jacob Pena"},
+        {"username": "ericoh", "password": "eo", "role": "member", "dues": "0", "display_name": "Eric Oh"},
+        {"username": "raymondchau", "password": "rc", "role": "member", "dues": "0", "display_name": "Raymond Chau"},
+        {"username": "bryanngo", "password": "bn", "role": "member", "dues": "0", "display_name": "Bryan Ngo"},
+        {"username": "vietho", "password": "vh", "role": "member", "dues": "0", "display_name": "Viet Ho"},
+        {"username": "timothyshin", "password": "ts", "role": "member", "dues": "0", "display_name": "Timothy Shin"},
+        {"username": "vikramkarkare", "password": "vk", "role": "member", "dues": "0", "display_name": "Vikram Karkare"},
+        {"username": "lanceopina", "password": "lo", "role": "member", "dues": "0", "display_name": "Lance Opina"},
+        {"username": "jacobpatag", "password": "jp", "role": "member", "dues": "0", "display_name": "Jacob Patag"},
+        {"username": "earthcapungan", "password": "ec", "role": "member", "dues": "0", "display_name": "Earth Capungan"},
+        {"username": "leonmungin", "password": "lm", "role": "member", "dues": "0", "display_name": "Leon Mungin"},
+        {"username": "kobevu", "password": "kv", "role": "member", "dues": "0", "display_name": "Kobe Vu"},
+        {"username": "peterlok", "password": "pl", "role": "member", "dues": "0", "display_name": "Peter Lok"},
+        {"username": "aaronjoshy", "password": "aj", "role": "member", "dues": "0", "display_name": "Aaron Joshy"},
     ]
 
     for user_data in users:
         existing_user = User.query.filter_by(username=user_data["username"]).first()
         if not existing_user:
             hashed_password = bcrypt.generate_password_hash(user_data["password"]).decode('utf-8')
-            new_user = User(username=user_data["username"], password=hashed_password, role=user_data["role"])
+            new_user = User(username=user_data["username"], password=hashed_password, role=user_data["role"], dues=user_data["dues"], display_name=user_data["display_name"])
             db.session.add(new_user)
     db.session.commit()
 
@@ -102,7 +103,7 @@ def login_user():
 
     if user and bcrypt.check_password_hash(user.password, password):
         # The password matches
-        additional_claims = {"role": user.role, "id": user.id}
+        additional_claims = {"role": user.role, "id": user.id, "display_name": user.display_name}
         access_token = create_access_token(identity=username, additional_claims=additional_claims)
         return jsonify(access_token=access_token), 200
     else:
@@ -144,7 +145,7 @@ def create_user():
 def get_users():
    try:
        users = User.query.all()
-       users_data = [{'id': user.id, 'username': user.username, 'password': user.password, 'role': user.role, 'dues': user.dues} for user in users]
+       users_data = [{'id': user.id, 'username': user.username, 'password': user.password, 'role': user.role, 'dues': user.dues, 'display_name': user.display_name} for user in users]
        return jsonify(users_data), 200
    except Exception as e:
        return make_response(jsonify({'message': 'error getting users', 'error': str(e)}), 500)
@@ -199,3 +200,13 @@ def update_dues(id):
         return make_response(jsonify({'message': 'user not found'}), 404)
     except Exception as e:
         return make_response(jsonify({'message': 'error updating dues', 'error': str(e)}), 500)
+    
+@app.route('/api/flask/users/dues/<id>/', methods=['GET'])
+def get_dues(id):
+    try:
+        user = User.query.filter_by(id=id).first()
+        if user:
+            return make_response(jsonify({'dues': user.dues}), 200)
+        return make_response(jsonify({'message': "user not found"}), 404)
+    except Exception as e:
+        return make_response(jsonify({'message': 'error getting dues', 'error': str(e)}), 500)  

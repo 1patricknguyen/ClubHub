@@ -29,7 +29,7 @@ const DuesProfilesContainer = () => {
   }, []);
 
   return (
-    <div className="bg-gray-900 grid grid-cols-6 gap-10">
+    <div className="ml-56 flex-1 bg-gray-900 grid grid-cols-6 gap-10 p-4 overflow-auto h-screen">
       {users.map((user) => (
         <DuesProfile key={user.id} user={user} />
       ))}
