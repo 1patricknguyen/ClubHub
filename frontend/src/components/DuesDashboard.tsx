@@ -31,11 +31,9 @@ export default function DuesDashboard() {
         }
     }, [id]);
         return (
-          <div className="bg-gray-900 min-h-screen text-white items-center flex-grow justify-center">
-          <div style={{ height: '100px' }} className="p-10 bg-gray-800 rounded shadow-xl w-1/3 flex flex-col justify-center">
-            <h1 className="text-2xl font-bold mb-4 text-white">Dues Owed: ${dues}</h1>
-          </div>
-        </div>
+          <div className="fixed top-48 left-64 w-70 max-w-lg bg-gray-800 rounded-md px-4 py-2">
+      <p className="text-white font-bold text-5xl text-center">Dues owed: ${dues}</p>
+    </div>
         );
       }
         
