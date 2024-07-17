@@ -5,7 +5,7 @@ import { jwtDecode } from 'jwt-decode';
 export default function Welcome() {
 
     interface MyJwtPayload {
-        sub: string; 
+        display_name: string; 
         role: string;
         
       }
@@ -15,19 +15,17 @@ export default function Welcome() {
         if (tokenFromStorage) {
           try {
             const decoded = jwtDecode<MyJwtPayload>(tokenFromStorage); 
-            setName(decoded.sub);
+            setName(decoded.display_name);
           } catch (error) {
             console.error('Error decoding token:', error);
           }
         }
       }, []);
       return (
-        <div style={{ marginLeft: '244px', marginTop: '20px' }} className="bg-gray-900 min-h-screen text-white flex-grow items-center justify-center">
-          <div style={{ height: '100px' }} className="p-10 bg-gray-800 rounded shadow-xl w-1/3 flex flex-col justify-center">
-            <h1 className="text-2xl font-bold mb-4 text-white">Welcome back, {name}!</h1>
-            <p className="text-gray-300">We're glad to see you again!</p>
-          </div>
+        <div className="fixed top-8 left-64 w-170 max-w-lg bg-gray-800 rounded-md px-4 py-2">
+          <p className="text-white font-bold text-5xl text-center">Welcome back, {name}!</p>
         </div>
       );
+      
 
 }
