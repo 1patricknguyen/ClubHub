@@ -14,7 +14,7 @@ const DuesProfilesContainer = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch('http://localhost:4000/api/flask/users/');
+        const response = await fetch('https://clubhub-akeu.onrender.com/api/flask/users/');
         if (!response.ok) {
           throw new Error('Failed to fetch users');
         }

@@ -22,7 +22,7 @@ export default function DuesDashboard() {
 
     useEffect(() => {
         if (id) {
-            fetch(`http://localhost:4000/api/flask/users/dues/${id}/`)
+            fetch(`https://clubhub-akeu.onrender.com/api/flask/users/dues/${id}/`)
             .then((res) => res.json())
             .then((data) => {
                 console.log(data);

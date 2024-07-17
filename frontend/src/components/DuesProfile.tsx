@@ -21,7 +21,7 @@ const UserProfile = ({ user }: any) => {
     const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-            const response = await fetch(`http://localhost:4000/api/flask/users/dues/${user.id}/`, {
+            const response = await fetch(`https://clubhub-akeu.onrender.com/api/flask/users/dues/${user.id}/`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
