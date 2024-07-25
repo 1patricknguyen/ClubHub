@@ -11,7 +11,7 @@ with app.app_context():
     CORS(app)
     bcrypt = Bcrypt(app)
     app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('DATABASE_URL')
-    app.config['JWT_SECRET_KEY'] = 'pideltapsiinc'
+    app.config['JWT_SECRET_KEY'] = environ.get('JWT_SECRET_KEY')
     jwt = JWTManager(app)
     db = SQLAlchemy(app)
 

@@ -10,6 +10,7 @@ services:
       - 4000:4000
     environment:
       - DATABASE_URL=postgresql://postgres:postgres@db:5432/postgres
+      - JWT_SECRET_KEY=pdpsiinc
     depends_on:
       - db
       
